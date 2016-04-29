@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:con="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.jia.one.MainActivity">
 
-
-    <TextView
+    <com.example.jia.one.Top
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/text123"
-        android:layout_gravity="center_horizontal" />
-</LinearLayout>
+        android:id="@+id/top"
+        con:mtitle="主页"
+        con:mtitleTextColor="#ffffff"
+        con:mtitleTextSize="12sp"
+        >
+    </com.example.jia.one.Top>
+    <com.example.jia.one.Bot
+        android:id="@+id/bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+    </com.example.jia.one.Bot>
+
+
+
+
+</RelativeLayout>

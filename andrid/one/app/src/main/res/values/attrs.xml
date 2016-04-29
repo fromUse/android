@@ -11,4 +11,6 @@
     <attr name="mrightText" format="string" />
     <attr name="mrightBackground" format="color|reference" />
 </declare-styleable>
+
+
 </resources>

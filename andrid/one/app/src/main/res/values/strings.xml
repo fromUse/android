@@ -1,3 +1,5 @@
-﻿<resources>
+<resources>
     <string name="app_name">测试</string>
+    <drawable name="clr_normal">#191970</drawable>
+    <drawable name="clr_pressed">#2c0def</drawable>
 </resources>

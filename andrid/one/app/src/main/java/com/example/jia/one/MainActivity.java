@@ -77,12 +77,9 @@ public class MainActivity extends Activity{
 
         snumber = (EditText) findViewById (R.id.snumber);
         pass = (EditText) findViewById (R.id.pass);
-        //  showpwd_check = (CheckBox) findViewById (R.id.showpwd_check);
         rememberpwd_check = (CheckBox) findViewById (R.id.remcheckBox);
         regbutton = (Button) findViewById (R.id.regbutton);
         progressBar = (ProgressBar)findViewById(R.id.progressBar) ;
-        /*view_tishi = (TextView) findViewById (R.id.view_tishi);*/
-        //获取数据存储类型保存到userinfo文件
         pref = getSharedPreferences("userinfo", Context.MODE_PRIVATE);
 
         if(pref.getBoolean("REMBERPWD",false)){//记住密码标示为否
