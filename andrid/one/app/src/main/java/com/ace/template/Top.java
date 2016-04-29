@@ -1,4 +1,4 @@
-package com.example.jia.one;
+package com.ace.template;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.example.jia.one.R;
 
 public class Top extends RelativeLayout {
 
@@ -42,7 +44,7 @@ public class Top extends RelativeLayout {
 
     public Top(Context context, AttributeSet attrs) {
         super(context, attrs);
-        TypedArray ta = context.obtainStyledAttributes(attrs,R.styleable.topder);
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.topder);
 
         mleftTextColor =ta.getColor(R.styleable.topder_mleftTextColor,0);
         mleftBackgound =ta.getDrawable(R.styleable.topder_mleftBackground);
