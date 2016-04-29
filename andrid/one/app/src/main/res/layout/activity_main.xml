@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.example.jia.one.MainActivity">
+    tools:context="com.ace.activity.LoginActivity">
 
-    <com.example.jia.one.Top
+    <com.ace.template.Top
         android:id="@+id/toper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-    </com.example.jia.one.Top>
+    </com.ace.template.Top>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

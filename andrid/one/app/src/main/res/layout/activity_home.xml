@@ -4,25 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.jia.one.MainActivity">
+    tools:context="com.ace.activity.LoginActivity">
 
-    <com.example.jia.one.Top
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.ace.template.Top
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:id="@+id/top"
         con:mtitle="主页"
         con:mtitleTextColor="#ffffff"
         con:mtitleTextSize="12sp"
+        android:background="#ff0000"
         >
-    </com.example.jia.one.Top>
-    <com.example.jia.one.Bot
+    </com.ace.template.Top>
+    <com.ace.template.Bot
         android:id="@+id/bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:background="#00ff00"
         android:layout_alignParentStart="true">
-    </com.example.jia.one.Bot>
+    </com.ace.template.Bot>
 
 
 

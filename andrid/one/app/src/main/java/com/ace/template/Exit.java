@@ -1,4 +1,4 @@
-package com.example.jia.one;
+package com.ace.template;
 
 import android.app.Activity;
 import android.content.Context;

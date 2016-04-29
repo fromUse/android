@@ -1,8 +1,13 @@
-package com.example.jia.one;
+package com.ace.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Toast;
+
+import com.ace.template.Bot;
+import com.ace.template.Exit;
+import com.ace.template.Top;
+import com.example.jia.one.R;
 
 
 public class HomeActivity extends Activity {

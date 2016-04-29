@@ -1,16 +1,16 @@
-package com.example.jia.one;
+package com.ace.template;
 
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.text.Layout;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import com.example.jia.one.R;
 
 
 public class Bot extends RelativeLayout {
@@ -45,7 +45,7 @@ public class Bot extends RelativeLayout {
         super(context, attrsb);
 
 
-        TypedArray ta = context.obtainStyledAttributes(attrsb,R.styleable.bottom);
+        TypedArray ta = context.obtainStyledAttributes(attrsb, R.styleable.bottom);
 
         dleftTextColor =ta.getColor(R.styleable.bottom_dleftTextColor,0);
         dleftBackgound =ta.getDrawable(R.styleable.bottom_dleftBackground);

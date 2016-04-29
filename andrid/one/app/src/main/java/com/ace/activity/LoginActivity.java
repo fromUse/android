@@ -1,4 +1,4 @@
-package com.example.jia.one;
+package com.ace.activity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,12 +10,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-public class MainActivity extends Activity{
+import com.ace.template.Exit;
+import com.ace.template.Top;
+import com.example.jia.one.R;
+
+public class LoginActivity extends Activity{
 
     //所需控件声明
     EditText snumber;
@@ -50,12 +53,12 @@ public class MainActivity extends Activity{
         tober.setOntopClickListener(new Top.topClickListener() {
             @Override
             public void leftClick() {
-                Toast.makeText(MainActivity.this,"hehe",Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this,"hehe",Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void rightClick() {
-                Toast.makeText(MainActivity.this,"hehe",Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this,"hehe",Toast.LENGTH_SHORT).show();
             }
         });
         //头部按钮关闭
@@ -118,8 +121,8 @@ public class MainActivity extends Activity{
                     case STOP:
                         //线程完成
 
-                        Intent intent = new Intent(MainActivity.this,HomeActivity.class);
-                        MainActivity.this.finish();
+                        Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+                        LoginActivity.this.finish();
                         startActivity(intent);
                 }
             }
@@ -143,7 +146,7 @@ public class MainActivity extends Activity{
                 String username = snumber.getText().toString();
                 String userpwd = pass.getText().toString();
                 if((! username.equals(pref.getString("USERNAME","123")))||(! userpwd.equals(pref.getString("PWD", "123")))){
-                    Toast.makeText(MainActivity.this,"用户名或密码不正确",Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this,"用户名或密码不正确",Toast.LENGTH_LONG).show();
                 }else{
 					/*用户名密码都正确的情况下*/
                     //新建一个编辑器
