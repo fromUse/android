@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:con="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.example.jia.one.MainActivity">
+
+    <com.example.jia.one.Top
+        android:id="@+id/toper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        con:mtitle="登录"
+        con:mtitleTextColor="#ffffff"
+        con:mtitleTextSize="12sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+    </com.example.jia.one.Top>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/relativeLayout">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dip"
+            android:text="学号:"
+            android:gravity="center"
+            android:id="@+id/textView1"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/snumber"
+            android:hint="请输入学号"
+            android:textSize="20sp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/textView1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dip"
+            android:gravity="center"
+            android:text="密码:"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:id="@+id/textView2"
+            android:layout_below="@+id/snumber"
+            android:layout_alignRight="@+id/textView1"
+            android:layout_alignEnd="@+id/textView1" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:hint="请输入密码"
+            android:id="@+id/pass"
+            android:textSize="20sp"
+            android:layout_below="@+id/snumber"
+            android:layout_toRightOf="@+id/textView1"
+            android:layout_toEndOf="@+id/textView1" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="记住密码"
+            android:id="@+id/remcheckBox"
+            android:textSize="19sp"
+            android:layout_below="@+id/pass"
+            android:layout_alignRight="@+id/pass"
+            android:layout_alignEnd="@+id/pass" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/remcheckBox"
+            android:weightSum="1"
+            android:id="@+id/linearLayout">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="登录"
+                android:textSize="22sp"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:id="@+id/regbutton"
+                android:background="@drawable/buttoncolor"
+                android:layout_weight="0.48" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/relativeLayout"
+        android:layout_alignLeft="@+id/relativeLayout"
+        android:layout_alignStart="@+id/relativeLayout"
+        android:layout_below="@+id/toper">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="汕尾职业技术学院"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:textColor="#191970"
+            android:id="@+id/textView"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/progressBar"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="59dp" />
+
+
+</RelativeLayout>
