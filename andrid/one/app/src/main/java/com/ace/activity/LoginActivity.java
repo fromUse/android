@@ -1,215 +1,309 @@
 package com.ace.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Handler;
-import android.os.Message;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.ace.template.Exit;
+import com.ace.template.BasicActivity;
+import com.ace.template.PUBLIC_FILE;
 import com.ace.template.Top;
+import com.ace.utlis.MD5;
+import com.ace.utlis.StringLoad;
 import com.example.jia.one.R;
+import com.roger.catloadinglibrary.CatLoadingView;
 
-public class LoginActivity extends Activity{
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+public class LoginActivity extends BasicActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener, TextWatcher {
+    //LOG标记
+    private static final String TAG = "LoginActivity";
 
     //所需控件声明
-    EditText snumber;
-    EditText pass;
-    CheckBox rememberpwd_check;
-    Button regbutton;
-    ProgressBar progressBar;
-    /*TextView view_tishi;*/
-    //变量
-    SharedPreferences pref;//简单的数据存储
-    Handler handler;//线程手柄
+    private EditText mUserID;
+    private EditText mPassword;
+    private CheckBox mRemenber_pass;
+    private CheckBox mAutoLogin;
+    private Button login_button;
+    private Top tober;
+    private SharedPreferences pref;//简单的数据存储xml
+    private Handler handler;//线程手柄
+    //登陆请求的url
+    private String mURL = PUBLIC_FILE.BASIC_URL+ "Login/Check";
 
-
-    static final int STOP = 0x111;//完成进度消息ID
-    static final int CONTINUE = 0x112;//继续显示进度条消息ID
-    static final int MAX = 100;//最大进度为100% 完成进度
-    int progress;//当前进度条进度
-
-
-
+    private static final String LOGIN_SUCCESSFUL = "1";
+    private static final String LOGIN_ERROR = "0";
+    private String user_id = "";
+    private String savePassword = "";
+    private  CatLoadingView cat = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView (R.layout.activity_main);
 
-        init();
-        //新建一个事件处理
-        setListeners();
-        //头部登录
-        Top tober = (Top) findViewById(R.id.toper);
-        tober.setOntopClickListener(new Top.topClickListener() {
+        super.onCreate (savedInstanceState);
+        //此处不再需要写以下三行代码
+        //因为在父类BasicActivity已经提前调用
+        //super.onCreate (savedInstanceState); 千万不能删除
+        //并且必须把 setContentView (R.layout.activity_main); 放在第一行
+
+        /*inits();
+        listeners();
+        settings();*/
+    }
+
+
+    @Override
+    protected void settings() {
+
+        //头部按钮关闭
+        tober.setleftIsvisable (true);
+        tober.setrightIsvisable (true);
+    }
+
+    @Override
+    protected void inits() {
+
+		/*初始化控件变量*/
+        initViews ();
+    }
+
+    /*初始化控件变量*/
+    private void initViews() {
+
+        mUserID = (EditText) findViewById (R.id.user_id);
+        mPassword = (EditText) findViewById (R.id.password);
+        mRemenber_pass = (CheckBox) findViewById (R.id.remenber_pass);
+        mAutoLogin = (CheckBox) findViewById (R.id.auto_login);
+        login_button = (Button) findViewById (R.id.login);
+        tober = (Top) findViewById (R.id.toper);
+        pref = getSharedPreferences ("user_info", Context.MODE_PRIVATE);
+
+        //当本地已经保存密码就，并且密码没有异常就直接登陆
+        String user = pref.getString ("USERNAME","");
+        String pass = pref.getString ("PWD","");
+        mAutoLogin.setChecked (pref.getBoolean ("AUTO_LOGIN",false));
+        if (pref.getBoolean ("FLAG_PASS",false) && !(user.equals ("")) && !(pass.equals ("")) && pref.getBoolean ("AUTO_LOGIN",false)){
+
+           String post_param = "user_id=" + user + "&password=" + pass;
+            cat = new CatLoadingView ();
+            cat.show (LoginActivity.this.getSupportFragmentManager (), "登录中...");
+           new StringLoad (StringLoad.METHOD_POST) {
+               @Override
+               public void executeUI(String result) {
+                   
+                   loginAction (result );
+               }
+           }.execute (mURL,post_param);
+
+        }
+
+        //启动activity直接获取账户密码
+        //有就有没有就是空白
+        mUserID.setText (pref.getString ("USERNAME", ""));
+
+        //记住密码复选框，默认为不记住密码
+        mRemenber_pass.setChecked (false);
+        if (pref.getBoolean ("FLAG_PASS", false)) {
+
+            String pwd = pref.getString ("PWD", "");
+            Log.i (TAG, "当前启动获取xml的密码 ：" +pass);
+            //获取md5后的密码，只是给用户一个假象
+            mPassword.setText (pass.equals ("") ? "" : pwd.substring (0, 16));
+            mRemenber_pass.setChecked (true);
+        }
+
+    }
+
+
+    //新建一个事件处理
+    @Override
+    protected void listeners() {
+
+        //登录按钮事件处理
+        login_button.setOnClickListener (this);
+        //监听密码输入框发生变化
+        mPassword.addTextChangedListener (this);
+        //监听复选框，是否记住密码
+        mRemenber_pass.setOnCheckedChangeListener (this);
+        ///监听自动登陆是否开启
+        mAutoLogin .setOnCheckedChangeListener (this);
+        tober.setOntopClickListener (new Top.topClickListener () {
             @Override
             public void leftClick() {
-                Toast.makeText(LoginActivity.this,"hehe",Toast.LENGTH_SHORT).show();
+                Toast.makeText (LoginActivity.this, "left", Toast.LENGTH_SHORT).show ();
             }
 
             @Override
             public void rightClick() {
-                Toast.makeText(LoginActivity.this,"hehe",Toast.LENGTH_SHORT).show();
+                Toast.makeText (LoginActivity.this, "right", Toast.LENGTH_SHORT).show ();
             }
         });
-        //头部按钮关闭
-        tober.setleftIsvisable(false);
-        tober.setrightIsvisable(false);
+
     }
 
 
-    public void init(){
+    @Override
+    public void onClick(View v) {
 
-		/*初始化控件变量*/
-        initViews();
-		/*初始化线程手柄*/
-        initHandler();
-    }
 
-    /*初始化控件变量*/
-    void initViews(){
+        int view_id = v.getId ();
 
-        snumber = (EditText) findViewById (R.id.snumber);
-        pass = (EditText) findViewById (R.id.pass);
-        rememberpwd_check = (CheckBox) findViewById (R.id.remcheckBox);
-        regbutton = (Button) findViewById (R.id.regbutton);
-        progressBar = (ProgressBar)findViewById(R.id.progressBar) ;
-        pref = getSharedPreferences("userinfo", Context.MODE_PRIVATE);
+        switch (view_id) {
 
-        if(pref.getBoolean("REMBERPWD",false)){//记住密码标示为否
-            //将文件内键值及类型返回并输出
-            snumber.setText(pref.getString("USERNAME", ""));
-            pass.setText(pref.getString("PWD",""));
-        }else{
-            //置空
-            snumber.setText("");
-            pass.setText("");
-        }
-        //记住密码将数据存储的键值及返回类型用boolean保存
-        rememberpwd_check.setChecked(pref.getBoolean("REMBERPWD", false));
-        progress = 0;//进度条初始化为零
-		 /*进度条初始化初始值及最大值*/
-        progressBar.setProgress(progress);
-        progressBar.setMax(MAX);
-    }
+            case R.id.login:
+                  cat = new CatLoadingView ();
 
-    /*初始化线程手柄*/
-    void initHandler(){
-        handler = new Handler(){
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                switch(msg.what){
+                user_id = mUserID.getText ().toString ();
 
-				/*进度未完成*/
-                    case CONTINUE:
-                        //判断线程是否正在运行
-                        if(! Thread.currentThread().isInterrupted()){
-                            progressBar.setProgress(progress);
-                        }
-                        break;
-			    /*进度已完成*/
-                    case STOP:
-                        //线程完成
 
-                        Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
-                        LoginActivity.this.finish();
-                        startActivity(intent);
+                String mPassword_start = mPassword.getText ().toString ();
+
+                if (mPassword_start == null || mPassword_start.equals ("")) {
+                    Toast.makeText (this, "请输入账户密码", Toast.LENGTH_SHORT).show ();
+
+                    return;
                 }
-            }
-        };
-    }
+                cat.show (getSupportFragmentManager (), "登录中...");
+                String mPassword_end = MD5.getMD5 (mPassword_start);
+                String post_param = "";
 
+                //根据密码保存状态标志对密码进行赋值
+                if ( !pref.getString ("PWD","").equals ("") ) {
+                    savePassword = pref.getString ("PWD", "");
+                    post_param = "user_id=" + user_id + "&password=" + savePassword;
+                } else {
+                    savePassword = mPassword_end ;
+                    post_param = "user_id=" + user_id + "&password=" + mPassword_end;
 
+                }
 
-    //新建一个事件处理
-    public void setListeners(){
-
-
-
-
-        //登录按钮事件处理
-        regbutton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                //获取用户名密码转化成字符串
-                String username = snumber.getText().toString();
-                String userpwd = pass.getText().toString();
-                if((! username.equals(pref.getString("USERNAME","123")))||(! userpwd.equals(pref.getString("PWD", "123")))){
-                    Toast.makeText(LoginActivity.this,"用户名或密码不正确",Toast.LENGTH_LONG).show();
-                }else{
-					/*用户名密码都正确的情况下*/
-                    //新建一个编辑器
-                    SharedPreferences.Editor editor = pref.edit();
-                    //判断记住密码是否打钩
-                    if(rememberpwd_check.isChecked()){
-                        editor.putString("USERNAME",username);
-                        editor.putString("PWD",userpwd);
-                        editor.putBoolean("REMBERPWD", true);//记住密码标示为ture
-                        editor.commit();
-                    }else{
-                        editor.putBoolean("REMBERPWD", false);//记住密码标示为false
-                        editor.commit();
+                new StringLoad (StringLoad.METHOD_POST) {
+                    //在此方法更新UI
+                    @Override
+                    public void executeUI(String result) {
+                        loginAction (result);
                     }
 
-					/*控件不可用*/
-                    snumber.setEnabled(false);
-                    pass.setEnabled(false);
-                    regbutton.setEnabled(false);
+                }.execute (mURL, post_param);
+                break;
+        }
 
-					/*显示进度条为五秒*/
-                    progressBar.setVisibility(View.VISIBLE);
-                   /* view_tishi.setVisibility(View.VISIBLE);*/
-                    new Thread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            try{
-								/*循环五次，每次一秒*/
-                                for(int i = 0;i < 5;i++){
-                                    progress = (i+1) * 20;
-                                    Thread.sleep(1000);//一秒
-                                    if(i == 4){
-                                        Message msg = new Message();
-                                        msg.what = STOP;
-                                        handler.sendMessage(msg);
-                                        break;
-                                    }else{
-                                        Message msg = new Message();
-                                        msg.what = CONTINUE;
-                                        handler.sendMessage(msg);
-                                    }
-                                }
-                            }catch(InterruptedException e){
-                                e.printStackTrace();
-                            }
-                        }
-                    }).start();
-                }
-            }
-        });
     }
 
-    /*重写onBackPressed()方法*/
+    private void savePassword(String user_id, String mPasswordword) {
+
+        if (pref != null) {
+
+            SharedPreferences.Editor editor = pref.edit ();
+            editor.putString ("USERNAME", user_id);
+            editor.putString ("PWD", mPasswordword);
+            editor.putBoolean ("FLAG_PASS", true);
+            editor.commit ();
+            Log.i (TAG, "savePassword:"+user_id+" 密码已保存"+mPasswordword);
+        }
+    }
+
+    /**
+     * 改变复选框的状态并且更新FLAG_PASS
+     * @param buttonView
+     * @param isChecked
+     */
     @Override
-    public void onBackPressed() {
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        SharedPreferences.Editor edit = pref.edit ();
+        switch (buttonView.getId ()){
 
-        Exit.exitonBackPressed(this);
+            case R.id.auto_login:
+                //更改自动登陆按钮
+
+                edit.putBoolean ("AUTO_LOGIN", isChecked);
+                edit.commit ();
+                //这里不结束
+            case R.id.remenber_pass:
+
+
+            edit.putBoolean ("FLAG_PASS", isChecked);
+            mRemenber_pass.setChecked (isChecked);
+            Log.i (TAG, "当前密码选择的状态 ：" + pref.getBoolean ("FLAG_PASS", false));
+            break;
+        }
+        
     }
 
 
+    //输入前
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    //输入过程中
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        SharedPreferences.Editor edit = pref.edit ();
+        edit.putBoolean ("FLAG_PASS", false);
+        edit.putString ("PWD", "");
+        edit.commit ();
+        Log.i (TAG, "onTextChanged: 你正在输入的密码" + s);
+    }
+
+    //输入后
+    @Override
+    public void afterTextChanged(Editable s) {
+
+    }
+
+    private void loginAction(String result){
+
+
+        if (result != null) {
+
+            try {
+                //解析json数据
+                JSONObject jsonObject = new JSONObject (result);
+                //获取字段
+                String flag = jsonObject.getString ("flag");
+                String msg = jsonObject.getString ("msg");
+                //判断flag的状态码
+                Toast.makeText (LoginActivity.this, msg, Toast.LENGTH_SHORT).show ();
+                if (flag.equals (LoginActivity.LOGIN_SUCCESSFUL)) {
+
+                    if (mRemenber_pass.isChecked ()) {
+                        savePassword (user_id, savePassword);
+                    }
+                    Intent it = new Intent (LoginActivity.this, HomeActivity.class);
+                    startActivity (it);
+                    LoginActivity.this.finish ();
+                } else {
+                    //登陆失败时把猫关掉
+                    cat.dismiss ();
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace ();
+            }
+
+
+                             /* Toast.makeText (LoginActivity.this,result,Toast.LENGTH_SHORT).show ();*/
+        } else {
+            Toast.makeText (LoginActivity.this, "网络貌似有问题.....", Toast.LENGTH_SHORT).show ();
+            cat.dismiss ();
+        }
+
+    }
 }
-
-
 
 

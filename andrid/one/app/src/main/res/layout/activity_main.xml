@@ -42,7 +42,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/snumber"
+            android:id="@+id/user_id"
             android:hint="请输入学号"
             android:textSize="20sp"
             android:layout_alignParentTop="true"
@@ -56,7 +56,7 @@
             android:textSize="20sp"
             android:textColor="#000000"
             android:id="@+id/textView2"
-            android:layout_below="@+id/snumber"
+            android:layout_below="@+id/user_id"
             android:layout_alignRight="@+id/textView1"
             android:layout_alignEnd="@+id/textView1" />
 
@@ -66,9 +66,9 @@
             android:inputType="textPassword"
             android:ems="10"
             android:hint="请输入密码"
-            android:id="@+id/pass"
+            android:id="@+id/password"
             android:textSize="20sp"
-            android:layout_below="@+id/snumber"
+            android:layout_below="@+id/user_id"
             android:layout_toRightOf="@+id/textView1"
             android:layout_toEndOf="@+id/textView1" />
 
@@ -76,18 +76,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="记住密码"
-            android:id="@+id/remcheckBox"
+            android:id="@+id/remenber_pass"
             android:textSize="19sp"
-            android:layout_below="@+id/pass"
-            android:layout_alignRight="@+id/pass"
-            android:layout_alignEnd="@+id/pass" />
+            android:layout_below="@+id/password"
+            android:layout_alignRight="@+id/password"
+            android:layout_alignEnd="@+id/password" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/remcheckBox"
+            android:layout_below="@+id/remenber_pass"
             android:weightSum="1"
             android:id="@+id/linearLayout">
 
@@ -98,7 +98,7 @@
                 android:textSize="22sp"
                 android:textColor="#ffffff"
                 android:textStyle="bold"
-                android:id="@+id/regbutton"
+                android:id="@+id/login"
                 android:background="@drawable/buttoncolor"
                 android:layout_weight="0.48" />
 
@@ -109,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="自动登录"
-            android:id="@+id/secheckBox"
+            android:id="@+id/auto_login"
             android:textSize="19sp"
             android:layout_above="@+id/linearLayout"
             android:layout_alignParentLeft="true"
