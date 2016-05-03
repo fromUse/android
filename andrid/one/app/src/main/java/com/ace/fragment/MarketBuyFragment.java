@@ -88,14 +88,7 @@ public class MarketBuyFragment extends Fragment implements AdapterView.OnItemCli
                             String phone = jsonObject.getString ("phone");
                             BuyBean item = new BuyBean (id,time,phone,content,title,user_id);
                             mBuyData.add (item);
-                            mBuyData.add (item);
-                            mBuyData.add (item);
-                            mBuyData.add (item);
-                            mBuyData.add (item);
-                            mBuyData.add (item);
-                            mBuyData.add (item);
-                            mBuyData.add (item);
-                            mBuyData.add (item);
+
                         }
 
 

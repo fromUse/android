@@ -93,11 +93,7 @@ public class MarketSellFragment extends Fragment implements AdapterView.OnItemCl
                             SellBean item = new SellBean (id,time,phone,url,content,price,title,user_id);
 
                             mSellData.add (item);
-                            mSellData.add (item);
-                            mSellData.add (item);
-                            mSellData.add (item);
-                            mSellData.add (item);
-                            mSellData.add (item);
+
                         }
 
                     } catch (JSONException e) {

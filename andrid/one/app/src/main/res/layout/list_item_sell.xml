@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:id="@+id/market_image"
+        android:src="@mipmap/ic_launcher"
+        />
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/market_title_text"
+            android:text="电脑桌出卖"
+            android:textSize="20sp"
+            android:gravity="center_vertical"
+            android:padding="8sp"
+            android:textSelectHandleLeft="@id/market_image"
+            android:background="@drawable/listview_item_textview_style"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/market_price_text"
+            android:textSize="13sp"
+            android:paddingTop="10dp"
+            android:paddingLeft="30dp"
+            android:text="content"
+            android:textColor="#FF6347"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="2016-5-1"
+            android:textSize="18sp"
+            android:padding="8sp"
+            android:gravity="right"
+            android:id="@+id/market_time_text"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

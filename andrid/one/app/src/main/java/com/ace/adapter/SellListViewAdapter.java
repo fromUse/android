@@ -76,7 +76,7 @@ public class SellListViewAdapter extends BaseAdapter implements AbsListView.OnSc
 
             holder = new ViewHolder ();
             //加载买模块的布局
-            convertView = LayoutInflater.from (context).inflate (R.layout.listview_item,null);
+            convertView = LayoutInflater.from (context).inflate (R.layout.list_item_sell,null);
 
             holder.img = (ImageView) convertView.findViewById (R.id.market_image);
             holder.title  = (TextView) convertView.findViewById (R.id.market_title_text);
@@ -90,7 +90,7 @@ public class SellListViewAdapter extends BaseAdapter implements AbsListView.OnSc
         bean = mData.get (position);
         //图片还没在福曲奇获取所有先用系统自带的图片
         holder.title.setText (bean.getTitle ());
-        holder.price.setText (bean.getPrice ());
+        holder.price.setText ( "价格" +bean.getPrice ());
         holder.time.setText (bean.getTime ());
 
         holder.img.setTag (bean.getImgURL ());

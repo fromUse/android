@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -64,11 +63,10 @@ public class BuyListViewAdapter extends BaseAdapter{
 
             holder = new ViewHolder ();
             //加载买模块的布局
-            convertView = LayoutInflater.from (context).inflate (R.layout.listview_item,null);
+            convertView = LayoutInflater.from (context).inflate (R.layout.list_item_buy,null);
             //将控件保存到holder上
-            holder.img = (ImageView) convertView.findViewById (R.id.market_image);
             holder.title  = (TextView) convertView.findViewById (R.id.market_title_text);
-            holder.price = (TextView) convertView.findViewById (R.id.market_price_text);
+            holder.content = (TextView) convertView.findViewById (R.id.market_content_text);
             holder.titme = (TextView) convertView.findViewById (R.id.market_time_text);
 
             convertView.setTag (holder);
@@ -77,8 +75,10 @@ public class BuyListViewAdapter extends BaseAdapter{
             holder = (ViewHolder) convertView.getTag ();
         }
         bean = mData.get (position);
-        holder.img.setImageResource (R.mipmap.ic_launcher);
+
         holder.title.setText (bean.getTitle ());
+        //暂时
+        holder.content.setText (bean.getContent ());
         holder.titme.setText (bean.getTime ());
 
         return convertView;
@@ -88,9 +88,8 @@ public class BuyListViewAdapter extends BaseAdapter{
     private class ViewHolder{
         //此类封装listview中每一项item
         //具体情况看项目需求
-        private ImageView img = null;
         private TextView title = null;
-        private TextView price = null;
+        private TextView content = null;
         private TextView titme = null;
     }
     
