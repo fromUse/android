@@ -18,8 +18,9 @@ public class MarketActivity extends AppCompatActivity implements ViewPager.OnPag
 
 
 
-    private ViewPager mMarketPage = null;
+    public ViewPager mMarketPage = null;
     private List<Fragment> mDate = null;
+
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);

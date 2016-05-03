@@ -2,6 +2,7 @@ package com.ace.fragment;
 
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,10 +28,12 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MarketSellFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class MarketSellFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
 
+    private static final String TAG = "MarketSellFragment";
     private View root = null;
     private ListView mSellMarketListview = null;
+    private FloatingActionButton fab = null;
     private List<SellBean> mSellData = null;
     private String url = PUBLIC_FILE.BASIC_URL + "Market/sell";
     @Override
@@ -56,6 +59,7 @@ public class MarketSellFragment extends Fragment implements AdapterView.OnItemCl
 
     private void listeners() {
         mSellMarketListview.setOnItemClickListener (this);
+        fab.setOnClickListener (this);
     }
 
     private void settings() {
@@ -66,7 +70,7 @@ public class MarketSellFragment extends Fragment implements AdapterView.OnItemCl
 
         mSellMarketListview = (ListView) root.findViewById (R.id.market_listview);
 
-
+        fab = (FloatingActionButton) root.findViewById (R.id.fab);
         mSellData = new ArrayList<SellBean> ();
 
         new StringLoad (StringLoad.METHOD_GET) {
@@ -114,5 +118,11 @@ public class MarketSellFragment extends Fragment implements AdapterView.OnItemCl
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText (getContext (),"你点击了第 :"+position,Toast.LENGTH_SHORT).show ();
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        Toast.makeText (getContext (), "点击发布页面。。。" ,Toast.LENGTH_SHORT).show ();
     }
 }

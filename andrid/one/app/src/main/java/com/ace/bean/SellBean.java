@@ -1,9 +1,11 @@
 package com.ace.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by chen-gui on 16-5-3.
  */
-public class SellBean {
+public class SellBean implements Serializable {
 
              /*"id":"1",
             "user_id":"2014111111",

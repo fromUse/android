@@ -1,13 +1,17 @@
 package com.ace.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.ace.activity.MarketBuyDtails;
 import com.ace.bean.BuyBean;
 import com.ace.utlis.ImageLoad;
 import com.example.jia.one.R;
@@ -18,7 +22,7 @@ import java.util.Set;
 /**
  * Created by chen-gui on 16-4-30.
  */
-public class BuyListViewAdapter extends BaseAdapter{
+public class BuyListViewAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
 
     private static final String TAG = "BuyListViewAdapter";
 
@@ -31,11 +35,13 @@ public class BuyListViewAdapter extends BaseAdapter{
     public static String [] URLS = null;
     private Set<ImageLoad> imageLoadManager  = null;
     private boolean loadTag = true;
-
+    private BuyBean bean = null;
     public BuyListViewAdapter(List<BuyBean> mData, Context context, ListView mBuyMarketListview) {
         this.mData = mData;
         this.context = context;
         this.mBuyMarketListview = mBuyMarketListview;
+
+        mBuyMarketListview.setOnItemClickListener (this);
     }
 
     @Override
@@ -56,7 +62,6 @@ public class BuyListViewAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
-        BuyBean bean = null;
         if (convertView == null){
 
             //此处写具体控件的b绑定与设置属性
@@ -82,6 +87,17 @@ public class BuyListViewAdapter extends BaseAdapter{
         holder.titme.setText (bean.getTime ());
 
         return convertView;
+    }
+
+    //点击item跳转到相应的详细页面
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        Intent it = new Intent (context, MarketBuyDtails.class);
+        Bundle bundle = new Bundle ();
+        bundle.putSerializable("buy_bean",mData.get (position));
+        it.putExtras (bundle);
+        context.startActivity (it);
     }
 
 

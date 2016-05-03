@@ -1,9 +1,11 @@
 package com.ace.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by chen-gui on 16-5-2.
  */
-public class BuyBean {
+public class BuyBean implements Serializable {
 
 
     String id      = null;

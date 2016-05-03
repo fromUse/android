@@ -2,16 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.jia.one">
 
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.ace.activity.LoginActivity"
+            android:name="com.ace.activity.HomeActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -20,9 +22,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ace.activity.HomeActivity"
+            android:name="com.ace.activity.LoginActivity"
             android:screenOrientation="portrait"/>
         <activity android:name="com.ace.activity.MarketActivity">
+        </activity>
+        <activity android:name="com.ace.activity.MarketBuyDtails">
+        </activity>
+        <activity android:name="com.ace.activity.MarketSellDtails">
+        </activity>
+        <activity
+            android:name="com.ace.activity.test"
+            android:label="@string/title_activity_test"
+            android:theme="@style/AppTheme">
         </activity>
     </application>
 

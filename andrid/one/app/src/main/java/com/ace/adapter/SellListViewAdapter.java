@@ -1,16 +1,20 @@
 package com.ace.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.ace.activity.MarketSellDtails;
 import com.ace.bean.SellBean;
 import com.ace.utlis.ImageLoad;
 import com.example.jia.one.R;
@@ -22,7 +26,7 @@ import java.util.Set;
 /**
  * Created by chen-gui on 16-4-30.
  */
-public class SellListViewAdapter extends BaseAdapter implements AbsListView.OnScrollListener {
+public class SellListViewAdapter extends BaseAdapter implements AbsListView.OnScrollListener, AdapterView.OnItemClickListener {
 
     private static final String TAG = "BuyListViewAdapter";
 
@@ -33,6 +37,7 @@ public class SellListViewAdapter extends BaseAdapter implements AbsListView.OnSc
     private int mStart,mEnd;
     //数据源的所以图片url
     public static String [] URLS = null;
+    private SellBean bean = null;
     private Set<ImageLoad> imageLoadManager  = null;
     private boolean loadTag = true;
 
@@ -41,6 +46,7 @@ public class SellListViewAdapter extends BaseAdapter implements AbsListView.OnSc
         this.context = context;
         this.mBuyMarketListview = mBuyMarketListview;
 
+        mBuyMarketListview.setOnItemClickListener (this);
         mBuyMarketListview.setOnScrollListener(this);
    /*     mBuyMarketListview.setOnScrollListener (this);*/
         imageLoadManager = new HashSet<ImageLoad> ();
@@ -69,7 +75,6 @@ public class SellListViewAdapter extends BaseAdapter implements AbsListView.OnSc
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
-        SellBean bean = null;
         if (convertView == null){
 
             //此处写具体控件的b绑定与设置属性
@@ -174,6 +179,17 @@ public class SellListViewAdapter extends BaseAdapter implements AbsListView.OnSc
         }
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+        Intent it = new Intent (context, MarketSellDtails.class);
+        Bundle bundle = new Bundle ();
+        bundle.putSerializable("sell_bean",mData.get (position));
+        it.putExtras (bundle);
+        context.startActivity (it);
+
+    }
 
 
     private class ViewHolder{
