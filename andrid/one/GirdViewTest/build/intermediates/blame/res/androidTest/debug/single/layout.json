@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/home/chen-gui/AndroidStudioProjects/android/andrid/one/GirdViewTest/build/intermediates/res/merged/androidTest/debug/layout/griditem_addpic.xml",
+        "source": "/home/chen-gui/AndroidStudioProjects/android/andrid/one/GirdViewTest/build/intermediates/bundles/debug/res/layout/griditem_addpic.xml"
+    },
+    {
+        "merged": "/home/chen-gui/AndroidStudioProjects/android/andrid/one/GirdViewTest/build/intermediates/res/merged/androidTest/debug/layout/activity_main.xml",
+        "source": "/home/chen-gui/AndroidStudioProjects/android/andrid/one/GirdViewTest/build/intermediates/bundles/debug/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/home/chen-gui/AndroidStudioProjects/android/andrid/one/GirdViewTest/build/intermediates/res/merged/androidTest/debug/layout/release.xml",
+        "source": "/home/chen-gui/AndroidStudioProjects/android/andrid/one/GirdViewTest/build/intermediates/bundles/debug/res/layout/release.xml"
+    }
+]

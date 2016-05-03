@@ -15,7 +15,7 @@ import com.example.jia.one.R;
 
 public class Bot extends RelativeLayout {
 
-    private Button dleftButton,drightButton,dcentButton;
+    private Button dleftButton, drightButton, dcentButton;
     private int dleftTextColor;
     private Drawable dleftBackgound;
     private String dleftText;
@@ -28,90 +28,113 @@ public class Bot extends RelativeLayout {
     private Drawable dcentBackgound;
     private String dcentText;
 
-    private LayoutParams dleftParams,drightParams,dcentParams;
+    private LayoutParams dleftParams, drightParams, dcentParams;
 
     private botClickListener listener;
 
-    public interface botClickListener{
+    public interface botClickListener {
         public void dleftClick();
+
         public void drightClick();
+
         public void dcentClick();
     }
-    public void setOnbotClickListener(botClickListener listener){
-        this.listener= listener;
+
+    public void setOnbotClickListener(botClickListener listener) {
+        this.listener = listener;
     }
-    
+
     public Bot(Context context, AttributeSet attrsb) {
-        super(context, attrsb);
+        super (context, attrsb);
 
 
-        TypedArray ta = context.obtainStyledAttributes(attrsb, R.styleable.bottom);
+        TypedArray ta = context.obtainStyledAttributes (attrsb, R.styleable.bottom);
 
-        dleftTextColor =ta.getColor(R.styleable.bottom_dleftTextColor,0);
-        dleftBackgound =ta.getDrawable(R.styleable.bottom_dleftBackground);
-        dleftText =ta.getString(R.styleable.bottom_dleftText);
+        dleftTextColor = ta.getColor (R.styleable.bottom_dleftTextColor, 0);
+        dleftBackgound = ta.getDrawable (R.styleable.bottom_dleftBackground);
+        dleftText = ta.getString (R.styleable.bottom_dleftText);
 
-        drightTextColor =ta.getColor(R.styleable.bottom_drightTextColor,0);
-        drightBackgound =ta.getDrawable(R.styleable.bottom_drightBackground);
-        drightText =ta.getString(R.styleable.bottom_drightText);
+        drightTextColor = ta.getColor (R.styleable.bottom_drightTextColor, 0);
+        drightBackgound = ta.getDrawable (R.styleable.bottom_drightBackground);
+        drightText = ta.getString (R.styleable.bottom_drightText);
 
-        dcentTextColor =ta.getColor(R.styleable.bottom_dcentTextColor,0);
-        dcentBackgound =ta.getDrawable(R.styleable.bottom_dcentBackground);
-        dcentText =ta.getString(R.styleable.bottom_dcentText);
+        dcentTextColor = ta.getColor (R.styleable.bottom_dcentTextColor, 0);
+        dcentBackgound = ta.getDrawable (R.styleable.bottom_dcentBackground);
+        dcentText = ta.getString (R.styleable.bottom_dcentText);
 
-        ta.recycle();
+        ta.recycle ();
 
-        dleftButton = new Button(context);
-        drightButton = new Button(context);
-        dcentButton =new Button(context);
+        dleftButton = new Button (context);
+        drightButton = new Button (context);
+        dcentButton = new Button (context);
 
-        dleftButton.setTextColor(dleftTextColor);
-        dleftButton.setBackground(dleftBackgound);
-        dleftButton.setText(dleftText);
+        dleftButton.setTextColor (dleftTextColor);
+        dleftButton.setBackground (dleftBackgound);
+        dleftButton.setText (dleftText);
 
-        drightButton.setTextColor(drightTextColor);
-        drightButton.setBackground(drightBackgound);
-        drightButton.setText(drightText);
+        drightButton.setTextColor (drightTextColor);
+        drightButton.setBackground (drightBackgound);
+        drightButton.setText (drightText);
 
-        dcentButton.setTextColor(dcentTextColor);
-        dcentButton.setBackground(dcentBackgound);
-        dcentButton.setText(dcentText);
+        dcentButton.setTextColor (dcentTextColor);
+        dcentButton.setBackground (dcentBackgound);
+        dcentButton.setText (dcentText);
 
         //setBackgroundColor(android.graphics.Color.parseColor("#ffffff"));
 
-        dleftParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
-        dleftParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT,TRUE);
-        dleftParams.setMargins(40,0,0,0);
-        addView(dleftButton,dleftParams);
+        dleftParams = new LayoutParams (ViewGroup.LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        dleftParams.addRule (RelativeLayout.ALIGN_PARENT_LEFT, TRUE);
+        dleftParams.setMargins (40, 0, 0, 0);
+        addView (dleftButton, dleftParams);
 
-        drightParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
-        drightParams.setMargins(0,0,40,0);
-        drightParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT,TRUE);
+        drightParams = new LayoutParams (ViewGroup.LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        drightParams.setMargins (0, 0, 40, 0);
+        drightParams.addRule (RelativeLayout.ALIGN_PARENT_RIGHT, TRUE);
 
-        addView(drightButton,drightParams);
+        addView (drightButton, drightParams);
 
-        dcentParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
-        dcentParams.addRule(RelativeLayout.CENTER_HORIZONTAL,TRUE);
-        addView(dcentButton,dcentParams);
+        dcentParams = new LayoutParams (ViewGroup.LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        dcentParams.addRule (RelativeLayout.CENTER_HORIZONTAL, TRUE);
+        addView (dcentButton, dcentParams);
 
-        dleftButton .setOnClickListener(new OnClickListener() {
+        dleftButton.setOnClickListener (new OnClickListener () {
             @Override
             public void onClick(View v) {
-                listener.dleftClick();
+                listener.dleftClick ();
             }
         });
 
-        drightButton .setOnClickListener(new OnClickListener() {
+        drightButton.setOnClickListener (new OnClickListener () {
             @Override
             public void onClick(View v) {
-                listener.drightClick();
+                listener.drightClick ();
             }
         });
-        dcentButton .setOnClickListener(new OnClickListener() {
+        dcentButton.setOnClickListener (new OnClickListener () {
             @Override
             public void onClick(View v) {
-                listener.dcentClick();
+                listener.dcentClick ();
             }
         });
+    }
+
+
+    public void setLeftBackgroundResource(int resourceID){
+
+        dleftButton.setBackgroundResource (resourceID);
+    }
+    public void setCenterBackgroundResource(int resourceID){
+
+        dcentButton.setBackgroundResource (resourceID);
+    }
+    public void setRightBackgroundResource(int resourceID){
+
+        drightButton.setBackgroundResource (resourceID);
+    }
+
+    public void setAllBackgroundToNormal(){
+        dleftButton.setBackgroundResource (R.mipmap.home_normal);
+        dcentButton.setBackgroundResource (R.mipmap.community_normal);
+        drightButton.setBackgroundResource (R.mipmap.user_info_normal);
     }
 }

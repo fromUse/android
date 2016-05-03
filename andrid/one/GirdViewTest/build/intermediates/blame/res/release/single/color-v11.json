@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/chen-gui/AndroidStudioProjects/android/andrid/one/GirdViewTest/build/intermediates/res/merged/release/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/home/chen-gui/AndroidStudioProjects/android/andrid/one/GirdViewTest/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
+        "merged": "/home/chen-gui/AndroidStudioProjects/android/andrid/one/GirdViewTest/build/intermediates/res/merged/release/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/home/chen-gui/AndroidStudioProjects/android/andrid/one/GirdViewTest/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
+    }
+]

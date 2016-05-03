@@ -15,12 +15,28 @@ import com.example.jia.one.R;
  */
 public class FragmentRight extends Fragment {
 
+    private View root = null;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate (R.layout.page_right,null);
-        return view;
+
+
+        if (root != null) {
+
+            ViewGroup parent = (ViewGroup) root.getParent ();
+            if (parent != null) {
+                parent.removeView (root);
+            }
+            return  root;
+
+        }
+
+        View root = inflater.inflate (R.layout.page_right,null);
+
+        return root;
     }
+
 
 }

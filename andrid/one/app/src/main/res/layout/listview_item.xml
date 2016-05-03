@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/market_image"
+        android:src="@mipmap/ic_launcher"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/market_title_text"
+        android:text="电脑桌出卖"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"
+        android:padding="8sp"
+        android:textSelectHandleLeft="@id/market_image"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/market_image"
+        android:layout_toEndOf="@+id/market_image"
+        android:background="@drawable/listview_item_textview_style"
+        />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/market_title_text"
+        android:layout_toRightOf="@+id/market_image"
+        android:layout_toEndOf="@+id/market_image">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/market_price_text"
+            android:text="价格:20"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:padding="8sp"
+            android:layout_weight="0.5"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="2016-5-1"
+            android:textSize="18sp"
+            android:padding="8sp"
+            android:gravity="right"
+            android:id="@+id/market_time_text"
+            android:layout_weight="0.5"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>

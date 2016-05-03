@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="170dp"
     android:layout_height="200dp"
-    android:background="@drawable/background"
-    tools:context=".MainActivity">
+    android:background="@drawable/background">
 
     <ImageView
         android:layout_centerInParent="true"
@@ -60,11 +59,11 @@
     <com.roger.catloadinglibrary.GraduallyTextView
         android:id="@+id/graduallyTextView"
         android:layout_marginBottom="10dp"
-        android:textSize="15sp"
+        android:textSize="14sp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:textColor="#ffffff"
-        android:text="L O A D I N G ..."
+        android:text="正在登陆中 ..."
         android:layout_width="110dp"
         android:layout_height="wrap_content"/>
 

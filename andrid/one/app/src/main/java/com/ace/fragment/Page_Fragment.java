@@ -18,29 +18,38 @@ import com.example.jia.one.R;
  */
 public class Page_Fragment extends Fragment {
 
+    private static final String TAG = "Page_Fragment";
 
     private String url = null;
+    private View root = null;
     private ImageView img = null;
+
     public Page_Fragment(String url) {
         this.url = url;
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate (R.layout.page_item,null);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        img = (ImageView) view.findViewById (R.id.page_img);
+        if (root != null) {
+            ViewGroup parent = (ViewGroup) root.getParent ();
+            if (parent!=null){
 
-        if (url!=null){
-            //调用图片异步加载类
-            //将url对应的图片下载回来并设置到img上
-            //内置一级缓存
-            new ImageLoad (img).execute (url);
+                parent.removeView (root);
+            }
+            return root;
         }
 
-        return  view;
+
+        root = inflater.inflate (R.layout.page_item,null,false);
+        img = (ImageView) root.findViewById (R.id.page_img);
+
+
+        new ImageLoad (img).execute (url);
+
+        img.setImageResource (R.mipmap.ic_launcher);
+        return  root;
     }
 
 }

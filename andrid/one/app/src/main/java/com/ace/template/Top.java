@@ -120,4 +120,9 @@ public class Top extends RelativeLayout {
         }
     }
 
+    public void setPagerTitle(String title){
+
+        tvTitle.setText (title);
+
+    }
 }

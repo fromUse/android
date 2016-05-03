@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -39,7 +38,6 @@ public class LoginActivity extends BasicActivity implements View.OnClickListener
     private Button login_button;
     private Top tober;
     private SharedPreferences pref;//简单的数据存储xml
-    private Handler handler;//线程手柄
     //登陆请求的url
     private String mURL = PUBLIC_FILE.BASIC_URL+ "Login/Check";
 
@@ -57,7 +55,7 @@ public class LoginActivity extends BasicActivity implements View.OnClickListener
         //此处不再需要写以下三行代码
         //因为在父类BasicActivity已经提前调用
         //super.onCreate (savedInstanceState); 千万不能删除
-        //并且必须把 setContentView (R.layout.activity_main); 放在第一行
+        //并且必须把 setContentView (R.layout.release); 放在第一行
 
         /*inits();
         listeners();
@@ -89,22 +87,29 @@ public class LoginActivity extends BasicActivity implements View.OnClickListener
         mAutoLogin = (CheckBox) findViewById (R.id.auto_login);
         login_button = (Button) findViewById (R.id.login);
         tober = (Top) findViewById (R.id.toper);
-        pref = getSharedPreferences ("user_info", Context.MODE_PRIVATE);
+        pref = getSharedPreferences ("user_info_normal", Context.MODE_PRIVATE);
 
         //当本地已经保存密码就，并且密码没有异常就直接登陆
-        String user = pref.getString ("USERNAME","");
-        String pass = pref.getString ("PWD","");
+        final String user = pref.getString ("USERNAME","");
+        final String pass = pref.getString ("PWD","");
+        Log.e (TAG, "loginAction: 账户密码 "+ user+pass);
         mAutoLogin.setChecked (pref.getBoolean ("AUTO_LOGIN",false));
         if (pref.getBoolean ("FLAG_PASS",false) && !(user.equals ("")) && !(pass.equals ("")) && pref.getBoolean ("AUTO_LOGIN",false)){
 
            String post_param = "user_id=" + user + "&password=" + pass;
             cat = new CatLoadingView ();
             cat.show (LoginActivity.this.getSupportFragmentManager (), "登录中...");
+            //当自动登陆时需要把记住密码对的状态改成true
+            SharedPreferences.Editor editor = pref.edit ();
+            editor.putBoolean ("FLAG_PASS", true);
+            editor.commit ();
+            user_id = user;
+            savePassword = pass;
            new StringLoad (StringLoad.METHOD_POST) {
                @Override
                public void executeUI(String result) {
-                   
-                   loginAction (result );
+
+                   loginAction (result);
                }
            }.execute (mURL,post_param);
 
@@ -115,7 +120,7 @@ public class LoginActivity extends BasicActivity implements View.OnClickListener
         mUserID.setText (pref.getString ("USERNAME", ""));
 
         //记住密码复选框，默认为不记住密码
-        mRemenber_pass.setChecked (false);
+        mRemenber_pass.setChecked (mAutoLogin.isChecked ());
         if (pref.getBoolean ("FLAG_PASS", false)) {
 
             String pwd = pref.getString ("PWD", "");
@@ -268,12 +273,11 @@ public class LoginActivity extends BasicActivity implements View.OnClickListener
 
     private void loginAction(String result){
 
-
         if (result != null) {
 
             try {
                 //解析json数据
-                JSONObject jsonObject = new JSONObject (result);
+                JSONObject jsonObject = new JSONObject (result  );
                 //获取字段
                 String flag = jsonObject.getString ("flag");
                 String msg = jsonObject.getString ("msg");
@@ -282,8 +286,10 @@ public class LoginActivity extends BasicActivity implements View.OnClickListener
                 if (flag.equals (LoginActivity.LOGIN_SUCCESSFUL)) {
 
                     if (mRemenber_pass.isChecked ()) {
+
                         savePassword (user_id, savePassword);
                     }
+                    cat.dismiss ();
                     Intent it = new Intent (LoginActivity.this, HomeActivity.class);
                     startActivity (it);
                     LoginActivity.this.finish ();
@@ -297,13 +303,21 @@ public class LoginActivity extends BasicActivity implements View.OnClickListener
             }
 
 
-                             /* Toast.makeText (LoginActivity.this,result,Toast.LENGTH_SHORT).show ();*/
+                              Toast.makeText (LoginActivity.this,result,Toast.LENGTH_SHORT).show ();
         } else {
             Toast.makeText (LoginActivity.this, "网络貌似有问题.....", Toast.LENGTH_SHORT).show ();
             cat.dismiss ();
         }
 
+
+      /*Intent it = new Intent (LoginActivity.this, HomeActivity.class);
+        cat.dismiss ();
+        startActivity (it);
+        Toast.makeText (this,"登陆成功",Toast.LENGTH_SHORT).show ();
+        LoginActivity.this.finish ();*/
     }
+
+
 }
 
 

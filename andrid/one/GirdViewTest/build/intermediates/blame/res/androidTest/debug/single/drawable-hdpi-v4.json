@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/home/chen-gui/AndroidStudioProjects/android/andrid/one/GirdViewTest/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/gridview_addpic.png",
+        "source": "/home/chen-gui/AndroidStudioProjects/android/andrid/one/GirdViewTest/build/intermediates/bundles/debug/res/drawable-hdpi-v4/gridview_addpic.png"
+    },
+    {
+        "merged": "/home/chen-gui/AndroidStudioProjects/android/andrid/one/GirdViewTest/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/ic_launcher.png",
+        "source": "/home/chen-gui/AndroidStudioProjects/android/andrid/one/GirdViewTest/build/intermediates/bundles/debug/res/drawable-hdpi-v4/ic_launcher.png"
+    },
+    {
+        "merged": "/home/chen-gui/AndroidStudioProjects/android/andrid/one/GirdViewTest/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/editview_shape.xml",
+        "source": "/home/chen-gui/AndroidStudioProjects/android/andrid/one/GirdViewTest/build/intermediates/bundles/debug/res/drawable-hdpi-v4/editview_shape.xml"
+    }
+]
