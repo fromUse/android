@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.ace.activity.HomeActivity"
+            android:name="com.ace.activity.WellComePage"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -31,6 +31,7 @@
         <activity android:name="com.ace.activity.Information_setting"/>
         <activity android:name="com.ace.activity.Information_volunteers"/>
         <activity android:name="afor.com.two.RepairActivity"/>
+        <activity android:name="com.ace.activity.HomeActivity"/>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.ace.fragment;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import com.example.jia.one.R;
 /**
  * A simple {@link Fragment} subclass.
  */
+@SuppressLint("ValidFragment")
 public class FragmentRight extends Fragment implements View.OnClickListener {
 
     private View root = null;

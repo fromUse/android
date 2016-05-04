@@ -1,6 +1,7 @@
 package com.ace.fragment;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ import afor.com.two.RepairActivity;
 /**
  * A simple {@link Fragment} subclass.
  */
+@SuppressLint("ValidFragment")
 public class FragmentLeft extends Fragment implements ViewPager.OnPageChangeListener, View.OnClickListener {
 
 
@@ -63,9 +65,13 @@ public class FragmentLeft extends Fragment implements ViewPager.OnPageChangeList
     };
 
     public FragmentLeft(BasicActivity context) {
+        super();
         this.context = context;
     }
 
+    public FragmentLeft(){
+        super();
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

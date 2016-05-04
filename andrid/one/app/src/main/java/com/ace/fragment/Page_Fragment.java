@@ -1,6 +1,7 @@
 package com.ace.fragment;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import com.example.jia.one.R;
  * A simple {@link Fragment} subclass.
  *
  */
+@SuppressLint("ValidFragment")
 public class Page_Fragment extends Fragment {
 
     private static final String TAG = "Page_Fragment";
@@ -28,6 +30,10 @@ public class Page_Fragment extends Fragment {
         this.url = url;
     }
 
+    public  Page_Fragment(){
+        super();
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

@@ -1,6 +1,7 @@
 package com.ace.fragment;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import com.roger.catloadinglibrary.GraduallyTextView;
 /**
  * A simple {@link Fragment} subclass.
  */
+@SuppressLint("ValidFragment")
 public class FragmentCenter extends Fragment {
 
     public FragmentCenter() {
