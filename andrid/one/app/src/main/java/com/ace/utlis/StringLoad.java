@@ -47,6 +47,7 @@ public abstract class StringLoad extends AsyncTask<String, Void, String> {
             post_param = params[1];
         }
 
+
         if (method == StringLoad.METHOD_GET) {
             return doGet (url);
         } else {

@@ -282,7 +282,7 @@ public class LoginActivity extends BasicActivity implements View.OnClickListener
                 String flag = jsonObject.getString ("flag");
                 String msg = jsonObject.getString ("msg");
                 //判断flag的状态码
-                Toast.makeText (LoginActivity.this, msg, Toast.LENGTH_SHORT).show ();
+               // Toast.makeText (LoginActivity.this, msg, Toast.LENGTH_SHORT).show ();
                 if (flag.equals (LoginActivity.LOGIN_SUCCESSFUL)) {
 
                     if (mRemenber_pass.isChecked ()) {
@@ -317,7 +317,11 @@ public class LoginActivity extends BasicActivity implements View.OnClickListener
         LoginActivity.this.finish ();*/
     }
 
+    @Override
+    public void onBackPressed() {
 
+        finish ();
+    }
 }
 
 

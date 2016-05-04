@@ -1,1 +1,1 @@
-include ':app', ':catloadinglibrary', ':GirdViewTest'
+include ':app', ':catloadinglibrary', ':GirdViewTest','tree'

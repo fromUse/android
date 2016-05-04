@@ -5,6 +5,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
+              android:background="#EDEDED"
               tools:context="com.ace.activity.LoginActivity">
     <com.ace.template.Top
         android:id="@+id/top"

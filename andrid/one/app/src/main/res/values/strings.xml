@@ -1,6 +1,13 @@
 <resources>
-    <string name="app_name">测试</string>
+    <string name="app_name">白白</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_test">test</string>
+    <string name="user_info">个人信息</string>
+    <string name="hours">志愿工时</string>
+    <string name="notice">系统公告</string>
+    <string name="update_version">检测更新</string>
+    <string name="about_us">关于我们</string>
+    <string name="unlogin">退出账号</string>
+    <string name="app_version">android:版本:1.0</string>
+    <string name="QQ">QQ群：562197509</string>
+    <string name="organize">汕尾职业技术学院-白白app</string>
 </resources>

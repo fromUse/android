@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
             android:layout_gravity="center_horizontal">
             <ImageButton
@@ -42,9 +42,11 @@
                 android:layout_width="0dp"
                 android:layout_height="100dp"
                 android:layout_weight="0.4"
+                android:src="@mipmap/market"
                 android:layout_marginRight="2dp"
                 />
             <ImageButton
+                android:src="@mipmap/lost"
                 android:id="@+id/option_seconed"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
@@ -61,6 +63,7 @@
             android:layout_marginRight="10dp"
             android:layout_gravity="center_horizontal">
             <ImageButton
+                android:src="@mipmap/repair1"
                 android:id="@+id/option_thrid"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
@@ -68,6 +71,7 @@
                 android:layout_marginRight="2dp"
                 />
             <ImageButton
+                android:src="@mipmap/com"
                 android:id="@+id/option_four"
                 android:layout_width="0dp"
                 android:layout_height="100dp"

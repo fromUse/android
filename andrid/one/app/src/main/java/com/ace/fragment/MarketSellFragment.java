@@ -2,13 +2,13 @@ package com.ace.fragment;
 
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.ace.adapter.SellListViewAdapter;
@@ -28,13 +28,13 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MarketSellFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
+public class MarketSellFragment extends Fragment implements AdapterView.OnItemClickListener{
 
     private static final String TAG = "MarketSellFragment";
     private View root = null;
     private ListView mSellMarketListview = null;
-    private FloatingActionButton fab = null;
     private List<SellBean> mSellData = null;
+    private ProgressBar progressBar2 = null;
     private String url = PUBLIC_FILE.BASIC_URL + "Market/sell";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,7 +59,6 @@ public class MarketSellFragment extends Fragment implements AdapterView.OnItemCl
 
     private void listeners() {
         mSellMarketListview.setOnItemClickListener (this);
-        fab.setOnClickListener (this);
     }
 
     private void settings() {
@@ -69,8 +68,7 @@ public class MarketSellFragment extends Fragment implements AdapterView.OnItemCl
     private void inits() {
 
         mSellMarketListview = (ListView) root.findViewById (R.id.market_listview);
-
-        fab = (FloatingActionButton) root.findViewById (R.id.fab);
+        progressBar2 = (ProgressBar) root.findViewById (R.id.progressBar2);
         mSellData = new ArrayList<SellBean> ();
 
         new StringLoad (StringLoad.METHOD_GET) {
@@ -103,6 +101,7 @@ public class MarketSellFragment extends Fragment implements AdapterView.OnItemCl
                     } catch (JSONException e) {
                         e.printStackTrace ();
                     }
+                    progressBar2.setVisibility (View.GONE);
 
                     mSellMarketListview.setAdapter (new SellListViewAdapter(mSellData,getContext (),mSellMarketListview));
                 }else {
@@ -121,8 +120,5 @@ public class MarketSellFragment extends Fragment implements AdapterView.OnItemCl
     }
 
 
-    @Override
-    public void onClick(View v) {
-        Toast.makeText (getContext (), "点击发布页面。。。" ,Toast.LENGTH_SHORT).show ();
-    }
+
 }

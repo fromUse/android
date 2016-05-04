@@ -21,10 +21,12 @@ public class Top extends RelativeLayout {
     private int mleftTextColor;
     private Drawable mleftBackgound;
     private String mleftText;
+    private float mleftTextSize;
 
     private int mrightTextColor;
     private Drawable mrightBackgound;
     private String mrightText;
+    private float mrightTextSize;
 
     private int mtitleTextColor;
     private float mtitleTextSize;
@@ -49,10 +51,12 @@ public class Top extends RelativeLayout {
         mleftTextColor =ta.getColor(R.styleable.topder_mleftTextColor,0);
         mleftBackgound =ta.getDrawable(R.styleable.topder_mleftBackground);
         mleftText =ta.getString(R.styleable.topder_mleftText);
+        mleftTextSize = ta.getDimension(R.styleable.topder_mleftTextSize,0);
 
         mrightTextColor =ta.getColor(R.styleable.topder_mrightTextColor,0);
         mrightBackgound =ta.getDrawable(R.styleable.topder_mrightBackground);
         mrightText =ta.getString(R.styleable.topder_mrightText);
+        mrightTextSize = ta.getDimension(R.styleable.topder_mrightTextSize,0);
 
         mtitleTextColor =ta.getColor(R.styleable.topder_mtitleTextColor,0);
         mtitleTextSize =ta.getDimension(R.styleable.topder_mtitleTextSize,0);
@@ -67,10 +71,12 @@ public class Top extends RelativeLayout {
         leftButton.setTextColor(mleftTextColor);
         leftButton.setBackground(mleftBackgound);
         leftButton.setText(mleftText);
+        leftButton.setTextSize (mleftTextSize);
 
         rightButton.setTextColor(mrightTextColor);
         rightButton.setBackground(mrightBackgound);
         rightButton.setText(mrightText);
+        rightButton.setTextSize (mleftTextSize);
 
         setBackgroundColor(android.graphics.Color.parseColor("#191970"));
 

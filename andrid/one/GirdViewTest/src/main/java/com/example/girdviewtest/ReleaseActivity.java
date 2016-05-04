@@ -117,7 +117,8 @@ public class ReleaseActivity extends Activity {
 			}
   		});  
     }
-    
+
+    /*----------------------------------------------------------------------------------------*/
     //获取图片路径 响应startActivityForResult  
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
         super.onActivityResult(requestCode, resultCode, data);        
@@ -189,6 +190,7 @@ public class ReleaseActivity extends Activity {
     		public void onClick(DialogInterface dialog, int which) {
     			dialog.dismiss();
     			imageItem.remove(position);
+				//通知数据更新、
     	        simpleAdapter.notifyDataSetChanged();
     		}
     	});

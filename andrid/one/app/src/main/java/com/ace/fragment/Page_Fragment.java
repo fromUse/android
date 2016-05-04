@@ -45,10 +45,8 @@ public class Page_Fragment extends Fragment {
         root = inflater.inflate (R.layout.page_item,null,false);
         img = (ImageView) root.findViewById (R.id.page_img);
 
-
+        img.setTag (url);
         new ImageLoad (img).execute (url);
-
-        img.setImageResource (R.mipmap.ic_launcher);
         return  root;
     }
 
